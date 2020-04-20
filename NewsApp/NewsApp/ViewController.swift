@@ -20,7 +20,7 @@ class ViewController: SegementSlideViewController {
 
     override var headerView: UIView? {
         let headerView = UIView()
-        //let headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
         return headerView
     }
