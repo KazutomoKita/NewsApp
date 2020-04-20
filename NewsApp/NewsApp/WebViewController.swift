@@ -25,6 +25,10 @@ class WebViewController: UIViewController, WKUIDelegate {
         button.frame = CGRect(x: 0, y: self.view.frame.size.height - 50, width: self.view.frame.size.width, height: 50)
         self.view.addSubview(button)
         
+        let urlString = UserDefaults.standard.object(forKey: "url")
+        let url = URL(string: urlString! as! String)
+        let request = URLRequest(url: url!)
+        webView.load(request)
     }
     
     @objc func buttonAction(_ sender:UIButton) {
