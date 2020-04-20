@@ -111,7 +111,13 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //webViewに取得したURLを表示したい（画面遷移した先で）
+        let webViewController:UIViewController = WebViewController()
         
+        webViewController.modalTransitionStyle = .crossDissolve
+        let newsItem = newsItems[indexPath.row]
+        UserDefaults.standard.set(newsItem.url, forKey: "url")
+        
+        self.present(webViewController, animated: true, completion: nil)
     }
 
 }
