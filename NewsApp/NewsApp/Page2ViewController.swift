@@ -1,7 +1,7 @@
 import UIKit
 import SegementSlide
 
-class Page1ViewController: UITableViewController, SegementSlideContentScrollViewDelegate, XMLParserDelegate {
+class Page2ViewController: UITableViewController, SegementSlideContentScrollViewDelegate, XMLParserDelegate {
     
     //XMLparserのインスタンスを作成
     var parser = XMLParser()
@@ -17,13 +17,12 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
         tableView.backgroundColor = .clear
         
         //画像を貼る
-        let image = UIImage(named: "0.jpg")
+        let image = UIImage(named: "1.jpg")
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height))
         imageView.image = image
         self.tableView.backgroundView = imageView
 
-        //url設定
-        let urlString:String = "https://news.yahoo.co.jp/pickup/rss.xml"
+        let urlString:String = "https://headlines.yahoo.co.jp/rss/abema-dom.xml"
         let url:URL = URL(string: urlString)!
         parser = XMLParser(contentsOf: url)!
         parser.delegate = self
@@ -79,7 +78,7 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
-        if self.newsItems.count > 0 {
+        if self.newsItems.count > 0{
             
             let lastItem = self.newsItems[self.newsItems.count - 1]
             
@@ -103,7 +102,6 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        
         self.tableView.reloadData()
     }
     
@@ -119,3 +117,4 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
     }
 
 }
+

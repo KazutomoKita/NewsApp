@@ -19,14 +19,17 @@ class ViewController: SegementSlideViewController {
     }
 
     override var headerView: UIView? {
-        let headerView = UIView()
+        let headerView = UIImageView()
+        headerView.isUserInteractionEnabled = true
+        headerView.contentMode = .scaleAspectFill
+        headerView.image = UIImage(named: "header")
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.heightAnchor.constraint(equalToConstant: view.bounds.height/4).isActive = true
         return headerView
     }
 
        override var titlesInSwitcher: [String] {
-           return ["Swift", "Ruby", "Kotlin", "Kotlin", "Kotlin", "Kotlin"]
+           return ["yahoo", "abema", "AP通信", "映画ナタリー", "Jスポ", "Buzz"]
        }
 
        override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
@@ -35,15 +38,15 @@ class ViewController: SegementSlideViewController {
             case 0:
                 return Page1ViewController()
             case 1:
-                return Page1ViewController()
+                return Page2ViewController()
             case 2:
-                return Page1ViewController()
+                return Page3ViewController()
             case 3:
-                return Page1ViewController()
+                return Page4ViewController()
             case 4:
-                return Page1ViewController()
+                return Page5ViewController()
             case 5:
-                return Page1ViewController()
+                return Page6ViewController()
             
         default:
             return Page1ViewController()
