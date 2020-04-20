@@ -67,5 +67,51 @@ class Page1ViewController: UITableViewController, SegementSlideContentScrollView
         
         return cell
     }
+    
+    
+    func parserDidEndDocument(_ parser: XMLParser, didstartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributeDict: [String: String] = [:]) {
+        
+        currentElementName = nil
+        if elementName == "item" {
+            self.newsItems.append(NewsItems())
+        }else{
+            currentElementName = elementName
+        }
+        
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
+        if self.newsItems.count > 0{
+            
+            let lastItem = self.newsItems[self.newsItems.count - 1]
+            
+            switch self.currentElementName {
+                
+            case "title":
+                lastItem.title = string
+            case "link":
+                lastItem.url = string
+            case "pubDate":
+                lastItem.pubDate = string
+                print(lastItem.pubDate as Any)
+            default:break
+            }
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        self.currentElementName = nil
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        self.tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //webViewに取得したURLを表示したい（画面遷移した先で）
+        
+    }
 
 }
