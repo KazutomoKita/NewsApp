@@ -66,12 +66,13 @@ class Page4ViewController: UITableViewController, SegementSlideContentScrollView
     }
     
     
-    func parserDidEndDocument(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributeDict: [String: String] = [:]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
         
         currentElementName = nil
         if elementName == "item" {
             self.newsItems.append(NewsItems())
         }else{
+            
             currentElementName = elementName
         }
         

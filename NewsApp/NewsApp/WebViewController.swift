@@ -1,11 +1,3 @@
-//
-//  WebViewController.swift
-//  NewsApp
-//
-//  Created by Kazutomo Kita on 2020/04/20.
-//  Copyright © 2020 Kazutomo Kita. All rights reserved.
-//
-
 import UIKit
 import WebKit
 
@@ -21,8 +13,11 @@ class WebViewController: UIViewController, WKUIDelegate {
         
         //ボタン
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(buttonAction(_ :)), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: self.view.frame.size.height - 50, width: self.view.frame.size.width, height: 50)
+        button.addTarget(self, action: #selector(buttonAction(_ :)), for: UIControl.Event.touchUpInside)
+        button.frame = CGRect(x: 0, y: self.view.frame.size.height - 50, width: self.view.frame.size.width, height: -50)
+        button.backgroundColor = .black
+        button.setTitle("戻る", for : .normal)
+        button.setTitleColor(.white, for: .normal)
         self.view.addSubview(button)
         
         let urlString = UserDefaults.standard.object(forKey: "url")
@@ -30,11 +25,12 @@ class WebViewController: UIViewController, WKUIDelegate {
         let request = URLRequest(url: url!)
         webView.load(request)
     }
-    
+
     @objc func buttonAction(_ sender:UIButton) {
         
         dismiss(animated: true, completion: nil)
     }
+    
 
     /*
     // MARK: - Navigation
